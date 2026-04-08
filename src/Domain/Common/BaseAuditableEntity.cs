@@ -11,4 +11,6 @@ public abstract class BaseAuditableEntity : BaseEntity
     public int? ModifiedBy { get; set; }
 
     public DateTime? DeletedAt { get; set; }
+
+    public bool? IsActive { get; set; }
 }

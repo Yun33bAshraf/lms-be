@@ -8,26 +8,12 @@ public class Tenant : BaseAuditableEntity
     [StringLength(200)]
     public string Name { get; set; } = string.Empty;
 
-    [StringLength(500)]
-    public string? Description { get; set; }
-
     [Required]
     [StringLength(100)]
     public string Subdomain { get; set; } = string.Empty;
 
-    public bool IsActive { get; set; } = true;
-
     [StringLength(200)]
     public string? LogoUrl { get; set; }
-
-    [StringLength(100)]
-    public string? Theme { get; set; }
-
-    [StringLength(100)]
-    public string? PrimaryColor { get; set; }
-
-    [StringLength(100)]
-    public string? SecondaryColor { get; set; }
 
     public DateTime? SubscriptionStartsAt { get; set; }
     public DateTime? SubscriptionEndsAt { get; set; }
