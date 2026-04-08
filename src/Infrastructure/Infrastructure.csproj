@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Project.Infrastructure</RootNamespace>
-    <AssemblyName>Project.Infrastructure</AssemblyName>
+    <RootNamespace>LMS.Infrastructure</RootNamespace>
+    <AssemblyName>LMS.Infrastructure</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Project.Application</RootNamespace>
-    <AssemblyName>Project.Application</AssemblyName>
+    <RootNamespace>LMS.Application</RootNamespace>
+    <AssemblyName>LMS.Application</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

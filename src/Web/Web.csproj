@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Project.Web</RootNamespace>
-    <AssemblyName>Project.Web</AssemblyName>
+    <RootNamespace>LMS.Web</RootNamespace>
+    <AssemblyName>LMS.Web</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

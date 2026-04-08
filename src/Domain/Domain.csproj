@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Project.Domain</RootNamespace>
-    <AssemblyName>Project.Domain</AssemblyName>
+    <RootNamespace>LMS.Domain</RootNamespace>
+    <AssemblyName>LMS.Domain</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
