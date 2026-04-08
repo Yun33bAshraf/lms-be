@@ -97,7 +97,7 @@ builder.Services.AddSwaggerGen(options =>
     { 
         Title = "LMS API", 
         Version = "v1",
-        Description = "Learning Management System API",
+        Description = "Library Management System API",
         Contact = new OpenApiContact
         {
             Name = "API Support",
