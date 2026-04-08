@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using LMS.Domain.Enums;
 
 namespace LMS.Domain.Entities;
@@ -31,10 +32,8 @@ public class Loan : BaseAuditableEntity
     public virtual Member Member { get; set; } = default!;
 
     public int? CheckedOutByUserId { get; set; }
-    public virtual User? CheckedOutByUser { get; set; }
 
     public int? ReturnedByUserId { get; set; }
-    public virtual User? ReturnedByUser { get; set; }
 
     public int TenantId { get; set; }
     public virtual Tenant Tenant { get; set; } = default!;

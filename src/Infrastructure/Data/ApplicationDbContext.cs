@@ -251,15 +251,8 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasForeignKey(e => e.MemberId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasOne(e => e.CheckedOutByUser)
-                .WithMany()
-                .HasForeignKey(e => e.CheckedOutByUserId)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            entity.HasOne(e => e.ReturnedByUser)
-                .WithMany()
-                .HasForeignKey(e => e.ReturnedByUserId)
-                .OnDelete(DeleteBehavior.SetNull);
+            // User relationships removed to avoid shadow property conflicts
+            // User data can be accessed through the foreign key IDs
 
             entity.HasOne(e => e.Tenant)
                 .WithMany(t => t.Loans)
@@ -322,10 +315,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasForeignKey(e => e.MemberId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasOne(e => e.ReceivedByUser)
-                .WithMany()
-                .HasForeignKey(e => e.ReceivedByUserId)
-                .OnDelete(DeleteBehavior.SetNull);
+            // User relationship removed to avoid shadow property conflicts
 
             entity.HasOne(e => e.Tenant)
                 .WithMany(t => t.Fines)
@@ -364,10 +354,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasForeignKey(e => e.TenantId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasOne(e => e.PerformedByUser)
-                .WithMany()
-                .HasForeignKey(e => e.PerformedByUserId)
-                .OnDelete(DeleteBehavior.SetNull);
+            // User relationship removed to avoid shadow property conflicts
 
             // Indexes for performance
             entity.HasIndex(e => new { e.TenantId, e.ActionTypeId });

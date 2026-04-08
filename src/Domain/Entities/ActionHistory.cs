@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LMS.Domain.Entities;
 
@@ -20,7 +21,6 @@ public class ActionHistory : BaseAuditableEntity
     public virtual Tenant? Tenant { get; set; }
 
     public int? PerformedByUserId { get; set; }
-    public virtual User? PerformedByUser { get; set; }
 
     public DateTime PerformedAt { get; set; } = DateTime.UtcNow;
 }

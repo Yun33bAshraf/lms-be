@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using LMS.Domain.Enums;
 
 namespace LMS.Domain.Entities;
@@ -37,7 +38,6 @@ public class Fine : BaseAuditableEntity
     public virtual Member Member { get; set; } = default!;
 
     public int? ReceivedByUserId { get; set; }
-    public virtual User? ReceivedByUser { get; set; }
 
     public int TenantId { get; set; }
     public virtual Tenant Tenant { get; set; } = default!;

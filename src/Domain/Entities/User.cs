@@ -31,7 +31,4 @@ public class User : IdentityUser<int>
     public virtual UserPreference Preference { get; set; } = default!;
     public virtual Member? MemberProfile { get; set; }
     public ICollection<LoginAttempt> LoginAttempts { get; set; } = [];
-    public ICollection<Loan> CheckedOutLoans { get; set; } = [];
-    public ICollection<Loan> ProcessedLoans { get; set; } = [];
-    public ICollection<Fine> ReceivedFines { get; set; } = [];
 }
