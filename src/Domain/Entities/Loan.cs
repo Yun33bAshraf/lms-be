@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LMS.Domain.Enums;
 
 namespace LMS.Domain.Entities;
 
@@ -40,13 +41,4 @@ public class Loan : BaseAuditableEntity
 
     // Navigation properties
     public virtual ICollection<Fine> Fines { get; set; } = [];
-}
-
-public enum LoanStatus
-{
-    Active = 1,
-    Returned = 2,
-    Overdue = 3,
-    Lost = 4,
-    Cancelled = 5
 }

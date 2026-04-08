@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LMS.Domain.Enums;
 
 namespace LMS.Domain.Entities;
 
@@ -40,21 +41,4 @@ public class Fine : BaseAuditableEntity
 
     public int TenantId { get; set; }
     public virtual Tenant Tenant { get; set; } = default!;
-}
-
-public enum FineStatus
-{
-    Unpaid = 1,
-    PartiallyPaid = 2,
-    Paid = 3,
-    Waived = 4,
-    Cancelled = 5
-}
-
-public enum FineType
-{
-    LateReturn = 1,
-    LostBook = 2,
-    DamagedBook = 3,
-    Other = 4
 }

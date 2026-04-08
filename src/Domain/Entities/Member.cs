@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LMS.Domain.Enums;
 
 namespace LMS.Domain.Entities;
 
@@ -36,14 +37,4 @@ public class Member : BaseAuditableEntity
     public virtual ICollection<Loan> Loans { get; set; } = [];
     public virtual ICollection<Reservation> Reservations { get; set; } = [];
     public virtual ICollection<Fine> Fines { get; set; } = [];
-}
-
-public enum MembershipType
-{
-    Student = 1,
-    Faculty = 2,
-    Staff = 3,
-    Community = 4,
-    Senior = 5,
-    Corporate = 6
 }

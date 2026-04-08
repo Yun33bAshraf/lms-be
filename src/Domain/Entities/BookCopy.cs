@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LMS.Domain.Enums;
 
 namespace LMS.Domain.Entities;
 
@@ -32,24 +33,4 @@ public class BookCopy : BaseAuditableEntity
     // Navigation properties
     public virtual ICollection<Loan> Loans { get; set; } = [];
     public virtual ICollection<Reservation> Reservations { get; set; } = [];
-}
-
-public enum CopyCondition
-{
-    Excellent = 1,
-    Good = 2,
-    Fair = 3,
-    Poor = 4,
-    Damaged = 5
-}
-
-public enum CopyStatus
-{
-    Available = 1,
-    Borrowed = 2,
-    Reserved = 3,
-    Maintenance = 4,
-    Lost = 5,
-    Damaged = 6,
-    Discarded = 7
 }

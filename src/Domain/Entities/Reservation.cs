@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LMS.Domain.Enums;
 
 namespace LMS.Domain.Entities;
 
@@ -33,13 +34,4 @@ public class Reservation : BaseAuditableEntity
 
     // Navigation properties
     public virtual ICollection<Loan> Loans { get; set; } = [];
-}
-
-public enum ReservationStatus
-{
-    Active = 1,
-    Fulfilled = 2,
-    Cancelled = 3,
-    Expired = 4,
-    Notified = 5
 }
