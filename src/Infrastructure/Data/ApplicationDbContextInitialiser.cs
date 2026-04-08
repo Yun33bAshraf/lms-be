@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MySqlConnector;
-using Project.Domain.Common;
-using Project.Domain.Entities;
-using Project.Domain.Enums;
+using LMS.Domain.Common;
+using LMS.Domain.Entities;
+using LMS.Domain.Enums;
 
-namespace Project.Infrastructure.Data;
+namespace LMS.Infrastructure.Data;
 
 public static class InitialiserExtensions
 {

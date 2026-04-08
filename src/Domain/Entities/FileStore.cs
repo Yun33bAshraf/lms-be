@@ -1,6 +1,6 @@
-﻿using Project.Domain.Common;
+﻿using LMS.Domain.Common;
 
-namespace Project.Domain.Entities;
+namespace LMS.Domain.Entities;
 
 public class FileStore : BaseAuditableEntity
 {

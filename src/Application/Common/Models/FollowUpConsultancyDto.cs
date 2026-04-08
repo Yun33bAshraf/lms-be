@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Models;
+﻿namespace LMS.Application.Common.Models;
 public class FollowUpConsultancyDto
 {
     public int ConsultancyId { get; set; }

@@ -1,12 +1,12 @@
 ﻿//using Amazon.S3;
 //using Amazon.S3.Model;
 //using Amazon.S3.Transfer;
-//using Project.Application.Common.Models;
-//using Project.Application.Services;
-//using Project.Domain.Common;
-//using Project.Domain.Enums;
+//using LMS.Application.Common.Models;
+//using LMS.Application.Services;
+//using LMS.Domain.Common;
+//using LMS.Domain.Enums;
 
-//namespace Project.Infrastructure.Repositories;
+//namespace LMS.Infrastructure.Repositories;
 
 //public class S3FileService(IAmazonS3 amazonS3) : IS3FileService
 //{

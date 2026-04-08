@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Common.Exceptions;
+using LMS.Application.Common.Exceptions;
 
-namespace Project.Web.Infrastructure;
+namespace LMS.Web.Infrastructure;
 
 public class CustomExceptionHandler : IExceptionHandler
 {

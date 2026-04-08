@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
-using Project.Application.Common.Interfaces;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Web.Services;
+namespace LMS.Web.Services;
 
 public class CurrentUser : IUser
 {

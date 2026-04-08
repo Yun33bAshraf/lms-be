@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Project.Domain.Enums;
+namespace LMS.Domain.Enums;
 
 public enum LanguageCode
 {

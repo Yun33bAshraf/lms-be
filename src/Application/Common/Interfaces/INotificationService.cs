@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Interfaces;
+﻿namespace LMS.Application.Common.Interfaces;
 public interface INotificationService
 {
     //Task CreateNotificationAsync(int toUserId, string title, string description, string messageKey,

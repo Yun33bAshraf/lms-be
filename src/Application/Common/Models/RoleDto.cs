@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Models;
+﻿namespace LMS.Application.Common.Models;
 public class RoleDto
 {
     public int RoleId { get; set; }

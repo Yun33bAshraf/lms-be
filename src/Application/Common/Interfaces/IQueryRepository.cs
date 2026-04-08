@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using Project.Domain.Common;
+using LMS.Domain.Common;
 
-namespace Project.Application.Common.Interfaces;
+namespace LMS.Application.Common.Interfaces;
 public interface IQueryRepository<T> where T : BaseAuditableEntity
 {
     Task<T?> GetAsync(

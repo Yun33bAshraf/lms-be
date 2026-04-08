@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Project.Application.Common.Utilities;
+namespace LMS.Application.Common.Utilities;
 public class PasswordService
 {
     public static string GenerateRandomPassword(int byteLength = 20)

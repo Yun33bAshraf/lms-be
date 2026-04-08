@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using MySqlConnector;
-using Project.Application.Common.Interfaces;
-using Project.Domain.Entities;
-using Project.Domain.Enums;
-using Project.Infrastructure.Data;
-using Project.Infrastructure.Data.Interceptors;
-using Project.Infrastructure.Identity;
-using Project.Infrastructure.Repositories;
+using LMS.Application.Common.Interfaces;
+using LMS.Domain.Entities;
+using LMS.Domain.Enums;
+using LMS.Infrastructure.Data;
+using LMS.Infrastructure.Data.Interceptors;
+using LMS.Infrastructure.Identity;
+using LMS.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Project.Infrastructure;
+namespace LMS.Infrastructure;
 
 public static class DependencyInjection
 {

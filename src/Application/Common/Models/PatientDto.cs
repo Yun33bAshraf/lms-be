@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Models;
+﻿namespace LMS.Application.Common.Models;
 public class PatientDto
 {
      public int Id { get; set; }

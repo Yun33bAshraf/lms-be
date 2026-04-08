@@ -1,8 +1,8 @@
-﻿//using Project.Domain.Entities;
+﻿//using LMS.Domain.Entities;
 //using Microsoft.EntityFrameworkCore;
 //using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-//namespace Project.Infrastructure.Data.Configurations;
+//namespace LMS.Infrastructure.Data.Configurations;
 
 //public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
 //{

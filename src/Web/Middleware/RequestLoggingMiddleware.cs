@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Project.Web.Middleware;
+namespace LMS.Web.Middleware;
 
 public class RequestLoggingMiddleware(RequestDelegate next, ILogger<RequestLoggingMiddleware> logger)
 {

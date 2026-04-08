@@ -1,11 +1,11 @@
 ﻿//using Microsoft.AspNetCore.Identity;
 //using Microsoft.EntityFrameworkCore;
 //using MySqlConnector;
-//using Project.Domain.Common;
-//using Project.Domain.Entities;
-//using Project.Domain.Enums;
+//using LMS.Domain.Common;
+//using LMS.Domain.Entities;
+//using LMS.Domain.Enums;
 
-//namespace Project.Infrastructure.Data;
+//namespace LMS.Infrastructure.Data;
 
 //public class DataSeeder(ApplicationDbContext dbContext, UserManager<User> userManager)
 //{

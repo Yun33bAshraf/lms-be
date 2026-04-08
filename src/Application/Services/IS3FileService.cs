@@ -1,7 +1,7 @@
-﻿//using Project.Application.Common.Models;
-//using Project.Domain.Enums;
+﻿//using LMS.Application.Common.Models;
+//using LMS.Domain.Enums;
 
-//namespace Project.Application.Services;
+//namespace LMS.Application.Services;
 
 //public interface IS3FileService
 //{

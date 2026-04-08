@@ -1,4 +1,4 @@
-﻿namespace Project.Domain.Exceptions;
+﻿namespace LMS.Domain.Exceptions;
 
 public class UnsupportedColourException : Exception
 {

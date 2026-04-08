@@ -2,11 +2,11 @@ using System.Linq.Expressions;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Models;
-using Project.Domain.Entities;
+using LMS.Application.Common.Interfaces;
+using LMS.Application.Common.Models;
+using LMS.Domain.Entities;
 
-namespace Project.Infrastructure.Identity;
+namespace LMS.Infrastructure.Identity;
 
 public class IdentityService : IIdentityService
 {

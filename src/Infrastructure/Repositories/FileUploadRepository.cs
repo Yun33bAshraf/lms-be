@@ -1,13 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Project.Domain.Common;
-using Project.Domain.Entities;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Models;
-using Project.Domain.Enums;
+using LMS.Domain.Common;
+using LMS.Domain.Entities;
+using LMS.Application.Common.Interfaces;
+using LMS.Application.Common.Models;
+using LMS.Domain.Enums;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 
 public class FileUploadRepository(IWebHostEnvironment webHostEnvironment, IApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor) : IFileUploadRepository
 {

@@ -1,5 +1,5 @@
-﻿global using Project.Domain.Common;
-global using Project.Domain.Entities;
-global using Project.Domain.Enums;
-//global using Project.Domain.Events;
-global using Project.Domain.Exceptions;
+﻿global using LMS.Domain.Common;
+global using LMS.Domain.Entities;
+global using LMS.Domain.Enums;
+//global using LMS.Domain.Events;
+global using LMS.Domain.Exceptions;

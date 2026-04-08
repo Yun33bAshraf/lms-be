@@ -1,14 +1,14 @@
 //using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.Assets.Command.Attachment;
-//using Project.Application.Assets.Command.Create;
-//using Project.Application.Assets.Command.Repairs.Create;
-//using Project.Application.Assets.Command.Repairs.Get;
-//using Project.Application.Assets.Command.Repairs.Update;
-//using Project.Application.Assets.Command.Update;
-//using Project.Application.Assets.Queries;
+//using LMS.Application.Assets.Command.Attachment;
+//using LMS.Application.Assets.Command.Create;
+//using LMS.Application.Assets.Command.Repairs.Create;
+//using LMS.Application.Assets.Command.Repairs.Get;
+//using LMS.Application.Assets.Command.Repairs.Update;
+//using LMS.Application.Assets.Command.Update;
+//using LMS.Application.Assets.Queries;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[Route("api/[controller]")]
 //[ApiController]

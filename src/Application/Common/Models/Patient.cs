@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Models;
+﻿namespace LMS.Application.Common.Models;
 public class Patient
 {
     public int TotalPatients { get; set; }

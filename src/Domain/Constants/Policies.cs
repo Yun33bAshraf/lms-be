@@ -1,4 +1,4 @@
-﻿namespace Project.Domain.Constants;
+﻿namespace LMS.Domain.Constants;
 
 public abstract class Policies
 {

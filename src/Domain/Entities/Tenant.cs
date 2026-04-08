@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Project.Domain.Entities;
+namespace LMS.Domain.Entities;
 
 public class Tenant : BaseAuditableEntity
 {

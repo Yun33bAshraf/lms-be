@@ -1,6 +1,6 @@
-﻿using ThemeEnum = Project.Domain.Enums.Theme;
+﻿using ThemeEnum = LMS.Domain.Enums.Theme;
 
-namespace Project.Domain.Entities;
+namespace LMS.Domain.Entities;
 
 public class UserPreference : BaseAuditableEntity
 {

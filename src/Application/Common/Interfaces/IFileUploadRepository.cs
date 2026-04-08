@@ -1,7 +1,7 @@
-﻿using Project.Application.Common.Models;
-using Project.Domain.Enums;
+﻿using LMS.Application.Common.Models;
+using LMS.Domain.Enums;
 
-namespace Project.Application.Common.Interfaces;
+namespace LMS.Application.Common.Interfaces;
 
 public interface IFileUploadRepository
 {

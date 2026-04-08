@@ -1,6 +1,6 @@
 ﻿//using System.Reflection;
 
-//namespace Project.Web.Infrastructure;
+//namespace LMS.Web.Infrastructure;
 
 //public static class WebApplicationExtensions
 //{

@@ -1,6 +1,6 @@
-﻿using Project.Application.Common.Models;
+﻿using LMS.Application.Common.Models;
 
-namespace Project.Application.Common.Behaviours;
+namespace LMS.Application.Common.Behaviours;
 
 public class APIResponse
 {

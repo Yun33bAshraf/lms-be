@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text.Json;
-using Project.Application.Common.Models;
-using ValidationException = Project.Application.Common.Exceptions.ValidationException;
+using LMS.Application.Common.Models;
+using ValidationException = LMS.Application.Common.Exceptions.ValidationException;
 
-namespace Project.Web.Middleware;
+namespace LMS.Web.Middleware;
 
 public class ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandlingMiddleware> logger)
 {

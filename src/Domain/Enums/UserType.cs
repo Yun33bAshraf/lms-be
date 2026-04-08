@@ -1,4 +1,4 @@
-﻿namespace Project.Domain.Enums;
+﻿namespace LMS.Domain.Enums;
 
 public enum UserType
 {

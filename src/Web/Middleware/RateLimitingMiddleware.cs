@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using System.Net;
 
-namespace Project.Web.Middleware;
+namespace LMS.Web.Middleware;
 
 public class RateLimitingMiddleware(RequestDelegate next, ILogger<RateLimitingMiddleware> logger, IConfiguration configuration)
 {

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Project.Domain.Common;
+using LMS.Domain.Common;
 
-namespace Project.Infrastructure.Data.Interceptors;
+namespace LMS.Infrastructure.Data.Interceptors;
 
 public class DispatchDomainEventsInterceptor : SaveChangesInterceptor
 {

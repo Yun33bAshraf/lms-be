@@ -1,8 +1,8 @@
 ﻿using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
-using Project.Application.Common.Interfaces;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Application.Common.Behaviours;
+namespace LMS.Application.Common.Behaviours;
 
 public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
 {
@@ -28,7 +28,7 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where T
             userName = await _identityService.GetUserNameAsync(userId);
         }
 
-        _logger.LogInformation("Project Request: {Name} {@UserId} {@UserName} {@Request}",
+        _logger.LogInformation("LMS Request: {Name} {@UserId} {@UserName} {@Request}",
             requestName, userId, userName, request);
     }
 }

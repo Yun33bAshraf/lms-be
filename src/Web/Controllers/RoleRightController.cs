@@ -1,10 +1,10 @@
 ﻿//using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.Roles.Commands;
-//using Project.Application.Roles.Queries.GetRolesWithPagination;
-//using Project.Application.Roles.Rights.Queries;
+//using LMS.Application.Roles.Commands;
+//using LMS.Application.Roles.Queries.GetRolesWithPagination;
+//using LMS.Application.Roles.Rights.Queries;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[Route("api/[controller]")]
 //[ApiController]

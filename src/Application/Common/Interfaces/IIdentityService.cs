@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
-using Project.Application.Common.Models;
-using Project.Domain.Entities;
+using LMS.Application.Common.Models;
+using LMS.Domain.Entities;
 
-namespace Project.Application.Common.Interfaces;
+namespace LMS.Application.Common.Interfaces;
 
 public interface IIdentityService
 {

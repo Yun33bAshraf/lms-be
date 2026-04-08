@@ -1,10 +1,10 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.Extensions.Logging;
-using LogsModel = Project.Domain.Entities.Logs;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Models;
+using LogsModel = LMS.Domain.Entities.Logs;
+using LMS.Application.Common.Interfaces;
+using LMS.Application.Common.Models;
 
-namespace Project.Application.SystemLogs.Query.Get;
+namespace LMS.Application.SystemLogs.Query.Get;
 
 public class GetLogsQueryHandler(
     IQueryRepository<LogsModel> queryRepository,

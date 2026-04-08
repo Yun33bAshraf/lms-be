@@ -1,6 +1,6 @@
-﻿using Project.Domain.Common;
+﻿using LMS.Domain.Common;
 
-namespace Project.Application.Common.Interfaces;
+namespace LMS.Application.Common.Interfaces;
 public interface IDataRepository<T> : IQueryRepository<T> where T : BaseAuditableEntity
 {
     void Add(T entity, int addedBy);

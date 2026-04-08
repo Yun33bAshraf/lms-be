@@ -1,13 +1,13 @@
 ﻿//using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.Auth.Command.ChangePassword;
-//using Project.Application.Auth.Command.CompleteForgetPassword;
-//using Project.Application.Auth.Command.ForgetPassword;
-//using Project.Application.Auth.Command.Login;
-//using Project.Application.Auth.Command.Register;
-//using Project.Application.Users.Commands.CompleteRegistration;
+//using LMS.Application.Auth.Command.ChangePassword;
+//using LMS.Application.Auth.Command.CompleteForgetPassword;
+//using LMS.Application.Auth.Command.ForgetPassword;
+//using LMS.Application.Auth.Command.Login;
+//using LMS.Application.Auth.Command.Register;
+//using LMS.Application.Users.Commands.CompleteRegistration;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[Route("api/[controller]")]
 //[ApiController]

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project.Infrastructure.Data;
-using Project.Application.Common.Interfaces;
+using LMS.Infrastructure.Data;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _applicationDbContext;

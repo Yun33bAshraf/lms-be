@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Project.Application.Common.Models;
+using LMS.Application.Common.Models;
 
-namespace Project.Infrastructure.Identity;
+namespace LMS.Infrastructure.Identity;
 
 public static class IdentityResultExtensions
 {

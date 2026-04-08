@@ -1,4 +1,4 @@
-﻿namespace Project.Application.SystemLogs.Query.Get;
+﻿namespace LMS.Application.SystemLogs.Query.Get;
 
 public class LogsDto
 {

@@ -1,6 +1,6 @@
-﻿using ValidationException = Project.Application.Common.Exceptions.ValidationException;
+﻿using ValidationException = LMS.Application.Common.Exceptions.ValidationException;
 
-namespace Project.Application.Common.Behaviours;
+namespace LMS.Application.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
      where TRequest : notnull

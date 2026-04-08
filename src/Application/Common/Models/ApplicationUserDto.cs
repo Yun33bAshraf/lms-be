@@ -1,6 +1,6 @@
-﻿using Project.Domain.Enums;
+﻿using LMS.Domain.Enums;
 
-namespace Project.Application.Common.Models;
+namespace LMS.Application.Common.Models;
 
 public class UserDto
 {

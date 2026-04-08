@@ -1,6 +1,6 @@
-﻿using Project.Application.Common.Models;
+﻿using LMS.Application.Common.Models;
 
-namespace Project.Application.SystemLogs.Query.Get;
+namespace LMS.Application.SystemLogs.Query.Get;
 
 public class GetLogsQuery : IRequest<ResponseBase>
 {

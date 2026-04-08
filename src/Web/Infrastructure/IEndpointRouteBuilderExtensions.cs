@@ -1,6 +1,6 @@
 ﻿//using System.Diagnostics.CodeAnalysis;
 
-//namespace Project.Web.Infrastructure;
+//namespace LMS.Web.Infrastructure;
 
 //public static class IEndpointRouteBuilderExtensions
 //{

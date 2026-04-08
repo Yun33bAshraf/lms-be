@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Security;
+﻿namespace LMS.Application.Common.Security;
 
 /// <summary>
 /// Specifies the class this attribute is applied to requires authorization.

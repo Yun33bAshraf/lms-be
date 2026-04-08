@@ -1,10 +1,10 @@
 ﻿using Azure.Identity;
-using Project.Infrastructure.Data;
-using Project.Web.Services;
+using LMS.Infrastructure.Data;
+using LMS.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Common.Interfaces;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Web;
+namespace LMS.Web;
 
 public static class DependencyInjection
 {

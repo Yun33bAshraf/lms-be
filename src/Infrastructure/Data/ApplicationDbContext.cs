@@ -1,13 +1,13 @@
 ﻿using System.Reflection;
-using Project.Application.Common.Interfaces;
-using Project.Domain.Entities;
-using Project.Domain.Enums;
+using LMS.Application.Common.Interfaces;
+using LMS.Domain.Entities;
+using LMS.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ThemeEnum = Project.Domain.Enums.Theme;
+using ThemeEnum = LMS.Domain.Enums.Theme;
 
-namespace Project.Infrastructure.Data;
+namespace LMS.Infrastructure.Data;
 
 public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>, IApplicationDbContext
 {

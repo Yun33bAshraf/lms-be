@@ -1,8 +1,8 @@
-﻿using Project.Domain.Entities;
-using ETModel = Project.Domain.Entities.EntityType;
-using LogsModel = Project.Domain.Entities.Logs;
+﻿using LMS.Domain.Entities;
+using ETModel = LMS.Domain.Entities.EntityType;
+using LogsModel = LMS.Domain.Entities.Logs;
 
-namespace Project.Application.Common.Interfaces;
+namespace LMS.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {

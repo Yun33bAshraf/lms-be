@@ -1,10 +1,10 @@
 ﻿//using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.EntityType.Category.Commands;
-//using Project.Application.EntityType.Category.Queries;
-//using Project.Application.EntityType.Queries.GetEntityTypeCategoriesWithPagination;
+//using LMS.Application.EntityType.Category.Commands;
+//using LMS.Application.EntityType.Category.Queries;
+//using LMS.Application.EntityType.Queries.GetEntityTypeCategoriesWithPagination;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 
 //[Route("api/[controller]")]

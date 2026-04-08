@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Project.Application.Common.Interfaces;
-using Project.Domain.Common;
+using LMS.Application.Common.Interfaces;
+using LMS.Domain.Common;
 
-namespace Project.Infrastructure.Data.Interceptors;
+namespace LMS.Infrastructure.Data.Interceptors;
 
 public class AuditableEntityInterceptor(
     IUser user) : SaveChangesInterceptor

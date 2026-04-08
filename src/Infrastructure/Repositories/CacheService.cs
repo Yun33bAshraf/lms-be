@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 
 public class CacheService
 {

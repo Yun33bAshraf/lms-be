@@ -1,8 +1,8 @@
-﻿using Project.Application.Common.Models;
+﻿using LMS.Application.Common.Models;
 using Dapper;
-using Project.Application.Common.Interfaces;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 
 public class SQLRepository : ISQLRepository
 {

@@ -1,7 +1,7 @@
 ﻿using System.Net.Mime;
 using System.Reflection;
 
-namespace Project.Domain.Common;
+namespace LMS.Domain.Common;
 public static class TypeExtensions
 {
     public static string GetDescription(this Enum genericEnum) //Hint: Change the method signature and input paramter to use the type parameter T

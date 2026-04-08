@@ -1,8 +1,8 @@
 //using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.Dashboard.Queries;
+//using LMS.Application.Dashboard.Queries;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[Route("api/[controller]")]
 //[ApiController]

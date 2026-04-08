@@ -1,13 +1,13 @@
 ﻿//using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.Users.Commands.CreateUser;
-//using Project.Application.Users.Commands.DeleteUser;
-//using Project.Application.Users.Commands.LanguageUpdate;
-//using Project.Application.Users.Commands.UpdateUser;
-//using Project.Application.Users.Commands.UserProfile;
-//using Project.Application.Users.Queries.GetUsersWithPagination;
+//using LMS.Application.Users.Commands.CreateUser;
+//using LMS.Application.Users.Commands.DeleteUser;
+//using LMS.Application.Users.Commands.LanguageUpdate;
+//using LMS.Application.Users.Commands.UpdateUser;
+//using LMS.Application.Users.Commands.UserProfile;
+//using LMS.Application.Users.Queries.GetUsersWithPagination;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[Route("api/[controller]")]
 //[ApiController]

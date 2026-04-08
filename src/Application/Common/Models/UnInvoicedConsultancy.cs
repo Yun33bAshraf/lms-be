@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Project.Application.Common.Models;
+namespace LMS.Application.Common.Models;
 public class UnInvoicedConsultancy
 {
     public int Id { get; set; }

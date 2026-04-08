@@ -1,4 +1,4 @@
-﻿//namespace Project.Web.Infrastructure;
+﻿//namespace LMS.Web.Infrastructure;
 
 //public abstract class EndpointGroupBase
 //{

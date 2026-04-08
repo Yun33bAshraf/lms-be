@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Project.Domain.Common;
+using LMS.Domain.Common;
 
-namespace Project.Domain.Entities;
+namespace LMS.Domain.Entities;
 
 public class Logs : BaseAuditableEntity
 {

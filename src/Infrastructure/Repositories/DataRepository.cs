@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project.Infrastructure.Data;
-using Project.Application.Common.Interfaces;
-using Project.Domain.Common;
+using LMS.Infrastructure.Data;
+using LMS.Application.Common.Interfaces;
+using LMS.Domain.Common;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 
 public class DataRepository<T> : QueryRepository<T>, IDataRepository<T> where T : BaseAuditableEntity
 {

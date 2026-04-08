@@ -1,6 +1,6 @@
-﻿using Project.Application.Common.Models;
+﻿using LMS.Application.Common.Models;
 
-namespace Project.Application.SystemLogs.Command.Delete;
+namespace LMS.Application.SystemLogs.Command.Delete;
 
 public class LogsDeleteCommand : IRequest<ResponseBase>
 {

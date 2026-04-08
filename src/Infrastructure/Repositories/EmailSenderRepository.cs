@@ -1,8 +1,8 @@
 ﻿using System.Net.Mail;
 using System.Net;
-using Project.Application.Common.Interfaces;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 public class EmailSenderRepository : IEmailSenderRepository
 {
     private readonly string _smtpServer = "smtp.zoho.com"; // Your SMTP server address

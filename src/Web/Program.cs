@@ -10,12 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
 using Serilog;
-using Project.Infrastructure.Data;
-using Project.Infrastructure.Data.Configurations;
-using Project.Web.Middleware;
-using Project.Application;
-using Project.Infrastructure;
-using Project.Web;
+using LMS.Infrastructure.Data;
+using LMS.Infrastructure.Data.Configurations;
+using LMS.Web.Middleware;
+using LMS.Application;
+using LMS.Infrastructure;
+using LMS.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +52,7 @@ builder.Host.UseSerilog((hostingContext, services, loggerConfiguration) =>
     loggerConfiguration
         .ReadFrom.Configuration(config) 
         .Enrich.FromLogContext()
-        .Enrich.WithProperty("Application", "Project");
+        .Enrich.WithProperty("Application", "LMS");
 });
 
 // JWT Authentication Configuration
@@ -95,7 +95,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo 
     { 
-        Title = "Project API", 
+        Title = "LMS API", 
         Version = "v1",
         Description = "Learning Management System API",
         Contact = new OpenApiContact

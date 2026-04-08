@@ -1,8 +1,8 @@
 ﻿//using Microsoft.AspNetCore.Mvc;
-//using Project.Application.EntityType.Queries.GetEntityTypeCategoriesWithPagination;
-//using Project.Application.EntityTypes.Queries.GetEntityTypesWithPagination;
+//using LMS.Application.EntityType.Queries.GetEntityTypeCategoriesWithPagination;
+//using LMS.Application.EntityTypes.Queries.GetEntityTypesWithPagination;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[ApiController]
 //[Route("api/[controller]")]

@@ -1,11 +1,11 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Project.Infrastructure.Data;
+using LMS.Infrastructure.Data;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using Project.Application.Common.Interfaces;
-using Project.Domain.Common;
+using LMS.Application.Common.Interfaces;
+using LMS.Domain.Common;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 public class QueryRepository<T> : IQueryRepository<T> where T : BaseAuditableEntity
 {
     protected readonly ApplicationDbContext _applicationDbContext;

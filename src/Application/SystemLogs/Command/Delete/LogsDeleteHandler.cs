@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Behaviours;
-using Project.Application.Common.Models;
+using LMS.Application.Common.Interfaces;
+using LMS.Application.Common.Behaviours;
+using LMS.Application.Common.Models;
 
-namespace Project.Application.SystemLogs.Command.Delete;
+namespace LMS.Application.SystemLogs.Command.Delete;
 
 public class LogsDeleteHandler(
     IApplicationDbContext dbContext,

@@ -1,4 +1,4 @@
-﻿namespace Project.Domain.Entities;
+﻿namespace LMS.Domain.Entities;
 
 public class UserProfile : BaseAuditableEntity
 {

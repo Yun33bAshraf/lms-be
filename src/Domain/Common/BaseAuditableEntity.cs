@@ -1,4 +1,4 @@
-﻿namespace Project.Domain.Common;
+﻿namespace LMS.Domain.Common;
 
 public abstract class BaseAuditableEntity : BaseEntity
 {

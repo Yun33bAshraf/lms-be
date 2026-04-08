@@ -1,6 +1,6 @@
-﻿using Project.Application.Common.Models;
+﻿using LMS.Application.Common.Models;
 
-namespace Project.Application.Common.Interfaces;
+namespace LMS.Application.Common.Interfaces;
 
 public interface ISQLRepository
 {

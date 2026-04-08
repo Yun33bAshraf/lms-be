@@ -1,9 +1,9 @@
 ﻿using System.Data;
 using System.Data.Common;
 using Dapper;
-using Project.Application.Common.Interfaces;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 
 public class DbRepository : IDbRepository
 {

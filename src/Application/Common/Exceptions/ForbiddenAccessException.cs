@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Exceptions;
+﻿namespace LMS.Application.Common.Exceptions;
 
 public class ForbiddenAccessException : Exception
 {

@@ -1,9 +1,9 @@
 //using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.SystemLogs.Command.Delete;
-//using Project.Application.SystemLogs.Query.Get;
+//using LMS.Application.SystemLogs.Command.Delete;
+//using LMS.Application.SystemLogs.Query.Get;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[Route("api/[controller]")]
 //[ApiController]

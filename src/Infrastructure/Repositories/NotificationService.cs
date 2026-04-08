@@ -1,8 +1,8 @@
 ﻿using System.Text.Json;
-using Project.Domain.Entities;
-using Project.Application.Common.Interfaces;
+using LMS.Domain.Entities;
+using LMS.Application.Common.Interfaces;
 
-namespace Project.Infrastructure.Repositories;
+namespace LMS.Infrastructure.Repositories;
 
 public class NotificationService : INotificationService
 {

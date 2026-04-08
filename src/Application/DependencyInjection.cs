@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using Project.Application.Common.Behaviours;
+using LMS.Application.Common.Behaviours;
 
-namespace Project.Application;
+namespace LMS.Application;
 
 public static class DependencyInjection
 {

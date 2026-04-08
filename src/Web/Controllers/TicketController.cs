@@ -1,12 +1,12 @@
 ﻿//using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
-//using Project.Application.TicketComments.Commands;
-//using Project.Application.TicketComments.Commands.Attachments;
-//using Project.Application.Tickets.Commands;
-//using Project.Application.Tickets.Commands.Attachments;
-//using Project.Application.Tickets.Queries;
+//using LMS.Application.TicketComments.Commands;
+//using LMS.Application.TicketComments.Commands.Attachments;
+//using LMS.Application.Tickets.Commands;
+//using LMS.Application.Tickets.Commands.Attachments;
+//using LMS.Application.Tickets.Queries;
 
-//namespace Project.Web.Controllers;
+//namespace LMS.Web.Controllers;
 
 //[Route("api/[controller]")]
 //[ApiController]
