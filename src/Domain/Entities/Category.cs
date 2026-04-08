@@ -10,7 +10,6 @@ public class Category : BaseAuditableEntity
     public string? Description { get; set; }
     public int? DisplayOrder { get; set; }
     public string? ColorCode { get; set; }
-    public bool IsActive { get; set; } = true;
     public int EntityTypeId { get; set; }
     public virtual EntityType EntityType { get; set; } = default!;
     public int? ParentCategoryId { get; set; }
