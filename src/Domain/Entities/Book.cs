@@ -17,8 +17,8 @@ public class Book : BaseAuditableEntity
 
     public DateTime PublicationDate { get; set; }
 
-    [StringLength(500)]
-    public string? CoverImageUrl { get; set; }
+    //[StringLength(500)]
+    //public string? CoverImageUrl { get; set; }
 
     [StringLength(100)]
     public string? Language { get; set; } = "English";

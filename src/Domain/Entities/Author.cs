@@ -22,9 +22,6 @@ public class Author : BaseAuditableEntity
     [StringLength(100)]
     public string? Nationality { get; set; }
 
-    [StringLength(500)]
-    public string? PhotoUrl { get; set; }
-
     public int TenantId { get; set; }
     public virtual Tenant Tenant { get; set; } = default!;
 
