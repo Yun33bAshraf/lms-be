@@ -31,30 +31,21 @@ public static class DependencyInjection
         services.AddAuthorizationBuilder();
 
         // Use DbContext pooling for better memory management
-        services.AddDbContextPool<ApplicationDbContext>((sp, options) =>
+        services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            
-            // Performance optimizations
-            options.EnableServiceProviderCaching();
+
             options.EnableSensitiveDataLogging(false);
             options.EnableDetailedErrors(false);
-            
-            // Query optimization
             options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-            
-            // MySQL configuration
+
             options.UseMySql(connectionString, serverVersion, mysqlOptions =>
             {
-                mysqlOptions.EnableRetryOnFailure(
-                    maxRetryCount: 3,
-                    maxRetryDelay: TimeSpan.FromSeconds(30),
-                    errorNumbersToAdd: null);
+                mysqlOptions.EnableRetryOnFailure(3, TimeSpan.FromSeconds(30), null);
                 mysqlOptions.CommandTimeout(30);
                 mysqlOptions.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
             });
-            
-        }, poolSize: 128);
+        });
 
         // Add Identity services with performance optimizations
         services.AddIdentityCore<User>(options =>
