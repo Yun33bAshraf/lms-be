@@ -7,10 +7,10 @@ public class User : IdentityUser<int>
     public UserType UserType { get; set; }
 
     public bool IsActive { get; set; } = true;
-    public bool IsEmailVerified { get; set; }
+    public bool IsEmailVerified { get; set; } // KW: to be removed in the future (using from identity)
 
     public DateTime? LastLoginAt { get; set; }
-    public bool IsLockedOut { get; set; }
+    public bool IsLockedOut { get; set; } // KW: to be removed in the future (using from identity)
 
     // Library-specific properties
     public bool IsLibraryStaff { get; set; } = false;

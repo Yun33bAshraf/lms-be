@@ -2,6 +2,7 @@
 using LMS.Domain.Common;
 using ETModel = LMS.Domain.Entities.EntityType;
 using LogsModel = LMS.Domain.Entities.Logs;
+using TenantModel = LMS.Domain.Entities.Tenant;
 
 namespace LMS.Application.Common.Interfaces;
 
@@ -15,7 +16,7 @@ public interface IApplicationDbContext
     DbSet<ActionHistory> ActionHistory { get; }
 
     // Library Management Entities
-    DbSet<Tenant> Tenants { get; }
+    DbSet<TenantModel> Tenants { get; }
     DbSet<Book> Books { get; }
     DbSet<Author> Authors { get; }
     DbSet<Publisher> Publishers { get; }

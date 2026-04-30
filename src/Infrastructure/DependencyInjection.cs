@@ -222,6 +222,6 @@ public static class DependencyInjection
 
     public class SeederUser : IUser
     {
-        public int Id => (int)UserType.Admin;
+        public int Id => (int)UserType.SuperAdmin;
     }
 }

@@ -2,7 +2,7 @@
 
 public enum UserType
 {
-    Admin = 1,
-    Recruiter = 2,
-    JobSeeker = 3
+    SuperAdmin = 1,
+    LibraryAdmin = 2,
+    LibraryStaff = 3
 }
