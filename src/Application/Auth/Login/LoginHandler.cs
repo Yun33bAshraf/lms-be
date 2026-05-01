@@ -3,6 +3,7 @@ using LMS.Application.Common.Interfaces;
 using LMS.Application.Common.Models;
 using LMS.Application.Services;
 using LMS.Domain.Entities;
+using RefreshTokenEntity = LMS.Domain.Entities.RefreshToken;
 using LMS.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +12,7 @@ namespace LMS.Application.Auth.Login;
 
 public class LoginHandler(
     UserManager<User> userManager,
-    IDataRepository<RefreshToken> refreshTokenRepo,
+    IDataRepository<RefreshTokenEntity> refreshTokenRepo,
     IDataRepository<LoginAttempt> loginAttemptRepo,
     ITokenService tokenService,
     IUnitOfWork uow,
@@ -85,7 +86,7 @@ public class LoginHandler(
         var accessToken = tokenService.GenerateAccessToken(user);
         var refreshTokenValue = tokenService.GenerateRefreshToken();
 
-        var refreshToken = new RefreshToken
+        var refreshToken = new RefreshTokenEntity
         {
             UserId = user.Id,
             Token = refreshTokenValue,

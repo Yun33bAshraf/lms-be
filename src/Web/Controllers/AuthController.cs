@@ -1,4 +1,5 @@
 ﻿using LMS.Application.Auth.Login;
+using LMS.Application.Auth.RefreshToken;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,13 @@ public class AuthController(ISender sender) : ControllerBase
     [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IResult> Login(LoginRequest query)
+    {
+        var result = await sender.Send(query);
+        return result.Status ? Results.Ok(result) : Results.BadRequest(result);
+    }
+
+    [HttpPost("refresh-token")]
+    public async Task<IResult> RefreshToken(RefreshTokenRequest query)
     {
         var result = await sender.Send(query);
         return result.Status ? Results.Ok(result) : Results.BadRequest(result);
