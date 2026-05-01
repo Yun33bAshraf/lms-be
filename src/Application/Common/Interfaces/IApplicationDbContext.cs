@@ -33,6 +33,7 @@ public interface IApplicationDbContext
     DbSet<ETModel> EntityType { get; }
     DbSet<FileStore> FileStore { get; }
     DbSet<LogsModel> Logs { get; }
+    DbSet<RefreshToken> RefreshToken { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

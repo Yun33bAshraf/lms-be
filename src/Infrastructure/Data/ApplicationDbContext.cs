@@ -39,6 +39,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
     public DbSet<EntityType> EntityType => Set<EntityType>();
     public DbSet<FileStore> FileStore => Set<FileStore>();
     public DbSet<Logs> Logs => Set<Logs>();
+    public DbSet<RefreshToken> RefreshToken => Set<RefreshToken>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
