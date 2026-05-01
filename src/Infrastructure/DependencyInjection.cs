@@ -14,6 +14,7 @@ using LMS.Infrastructure.Identity;
 using LMS.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
+using LMS.Application.Services;
 
 namespace LMS.Infrastructure;
 
@@ -111,6 +112,7 @@ public static class DependencyInjection
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<ITokenService, TokenService>();
 
         // Environment-based service configuration
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
