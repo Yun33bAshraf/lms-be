@@ -13,14 +13,6 @@ namespace LMS.Web.Controllers;
 [ApiController]
 public class AuthController(ISender sender) : ControllerBase
 {
-    //[AllowAnonymous]
-    //[HttpPost("register")]
-    //public async Task<IActionResult> CreateUser(RegisterCommand command)
-    //{
-    //    var result = await _sender.Send(command);
-    //    if (result.Status) return Ok(result); else return BadRequest(result);
-    //}
-
     [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IResult> Login(LoginRequest query)
@@ -65,12 +57,4 @@ public class AuthController(ISender sender) : ControllerBase
         var result = await sender.Send(query);
         return result.Status ? Results.Ok(result) : Results.BadRequest(result);
     }
-
-    //[AllowAnonymous]
-    //[HttpPost("complete-registration")]
-    //public async Task<IResult> CompleteRegistration(ISender sender, CompleteRegistrationCommand query)
-    //{
-    //    var result = await sender.Send(query);
-    //    return result.Status ? Results.Ok(result) : Results.BadRequest(result);
-    //}
 }
