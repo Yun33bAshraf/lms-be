@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MySqlConnector;
-using LMS.Domain.Common;
 using LMS.Domain.Entities;
 using LMS.Domain.Enums;
 
@@ -15,19 +14,19 @@ public static class InitialiserExtensions
     public static async Task InitialiseDatabaseAsync(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
-
         var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
-
         await initialiser.InitialiseAsync();
-
         await initialiser.SeedAsync();
     }
 }
 
-public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitialiser> logger, ApplicationDbContext context
-    //UserManager<User> userManager
-    )
+public class ApplicationDbContextInitialiser(
+    ILogger<ApplicationDbContextInitialiser> logger,
+    ApplicationDbContext context,
+    UserManager<User> userManager)
 {
+    private const string SeedPassword = "Asdf@1234!";
+
     public async Task InitialiseAsync()
     {
         try
@@ -56,12 +55,213 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
 
     public async Task TrySeedAsync()
     {
+        if (!await CheckTableExistsAsync("AspNetUsers"))
+        {
+            logger.LogWarning("Users table does not exist yet. Skipping user seeding.");
+            return;
+        }
 
-        await Task.Delay(100);
-        //SeedRoles();
-        //SeedUser();
-        //SeedPermissions();
-        //SeedEntityTypes();
+        await SeedUsersAsync();
+    }
+
+    private async Task SeedUsersAsync()
+    {
+        var seedUsers = new[]
+        {
+            new SeedUserDefinition(
+                Id:            1,
+                FirstName:     "System",
+                LastName:      "Admin",
+                DisplayName:   "System Admin",
+                Email:         "superadmin@lms.local",
+                ContactNumber: "03001000001",
+                UserType:      UserType.SuperAdmin,
+                IsLibraryStaff:       false,
+                CanCheckoutBooks:     false,
+                CanReserveBooks:      false,
+                CanRenewBooks:        false,
+                AutoRenewEnabled:     false,
+                DefaultLoanPeriodDays: 0,
+                MaxReservationsAllowed: 0,
+                City:         "Islamabad",
+                State:        "ICT",
+                PostalCode:   "44000",
+                Country:      "Pakistan",
+                Organization: "LMS HQ",
+                EmployeeId:   "EMP-001"
+            ),
+            new SeedUserDefinition(
+                Id:            2,
+                FirstName:     "Library",
+                LastName:      "Admin",
+                DisplayName:   "Library Admin",
+                Email:         "libraryadmin@lms.local",
+                ContactNumber: "03001000002",
+                UserType:      UserType.LibraryAdmin,
+                IsLibraryStaff:       true,
+                CanCheckoutBooks:     true,
+                CanReserveBooks:      true,
+                CanRenewBooks:        true,
+                AutoRenewEnabled:     true,
+                DefaultLoanPeriodDays: 30,
+                MaxReservationsAllowed: 10,
+                City:         "Lahore",
+                State:        "Punjab",
+                PostalCode:   "54000",
+                Country:      "Pakistan",
+                Organization: "Central Library",
+                EmployeeId:   "EMP-002"
+            ),
+            new SeedUserDefinition(
+                Id:            3,
+                FirstName:     "Library",
+                LastName:      "Staff",
+                DisplayName:   "Library Staff",
+                Email:         "librarystaff@lms.local",
+                ContactNumber: "03001000003",
+                UserType:      UserType.LibraryStaff,
+                IsLibraryStaff:       true,
+                CanCheckoutBooks:     true,
+                CanReserveBooks:      true,
+                CanRenewBooks:        true,
+                AutoRenewEnabled:     false,
+                DefaultLoanPeriodDays: 14,
+                MaxReservationsAllowed: 3,
+                City:         "Karachi",
+                State:        "Sindh",
+                PostalCode:   "75000",
+                Country:      "Pakistan",
+                Organization: "Branch Library",
+                EmployeeId:   "EMP-003"
+            ),
+        };
+
+        foreach (var definition in seedUsers)
+            await CreateUserIfNotExistsAsync(definition);
+    }
+
+    private async Task CreateUserIfNotExistsAsync(SeedUserDefinition def)
+    {
+        if (await userManager.FindByEmailAsync(def.Email) is not null)
+        {
+            logger.LogInformation("Seed user {Email} already exists. Skipping.", def.Email);
+            return;
+        }
+
+        // --- User (Identity) ---
+        var user = new User
+        {
+            Id = def.Id,
+            UserName = def.Email,
+            NormalizedUserName = def.Email.ToUpperInvariant(),
+            Email = def.Email,
+            NormalizedEmail = def.Email.ToUpperInvariant(),
+            EmailConfirmed = true,
+            PhoneNumber = def.ContactNumber,
+            PhoneNumberConfirmed = true,
+            TwoFactorEnabled = false,
+            LockoutEnabled = true,
+            LockoutEnd = null,
+            AccessFailedCount = 0,
+            SecurityStamp = Guid.NewGuid().ToString(),
+            ConcurrencyStamp = Guid.NewGuid().ToString(),
+            // App-specific
+            UserType = def.UserType,
+            IsActive = true,
+            IsEmailVerified = true,
+            IsLockedOut = false,
+            LastLoginAt = null,
+            IsLibraryStaff = def.IsLibraryStaff,
+            CanCheckoutBooks = def.CanCheckoutBooks,
+            CanReserveBooks = def.CanReserveBooks,
+            CanRenewBooks = def.CanRenewBooks,
+            CurrentLoansCount = 0,
+            CurrentReservationsCount = 0,
+            TotalFines = 0,
+            HasOverdueBooks = false,
+            LastLibraryActivity = null,
+            TenantId = 1,
+        };
+
+        var result = await userManager.CreateAsync(user, SeedPassword);
+
+        if (!result.Succeeded)
+        {
+            var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+            logger.LogError("Failed to create seed user {Email}: {Errors}", def.Email, errors);
+            return;
+        }
+
+        var now = DateTime.UtcNow;
+
+        // --- UserProfile ---
+        var profile = new UserProfile
+        {
+            UserId = user.Id,
+            FirstName = def.FirstName,
+            LastName = def.LastName,
+            DisplayName = def.DisplayName,
+            Email = def.Email,
+            ContactNumber = def.ContactNumber,
+            DateOfBirth = new DateTime(1990, 1, 1),
+            GenderTypeId = null,
+            Address = "Default Address",
+            City = def.City,
+            State = def.State,
+            PostalCode = def.PostalCode,
+            Country = def.Country,
+            LibraryCardNumber = $"LIB-{def.Id:D5}",
+            LibraryCardIssuedDate = now,
+            LibraryCardExpiryDate = now.AddYears(3),
+            EmergencyContact = "Emergency Contact",
+            EmergencyContactPhone = "03000000000",
+            SchoolOrganization = def.Organization,
+            StudentId = null,
+            EmployeeId = def.EmployeeId,
+            TenantId = 1,
+            CreatedAt = now,
+            CreatedBy = (int)UserType.SuperAdmin,
+            ModifiedAt = now,
+            ModifiedBy = (int)UserType.SuperAdmin,
+        };
+
+        // --- UserPreference ---
+        var preference = new UserPreference
+        {
+            UserId = user.Id,
+            LanguageId = (int)LanguageCode.EN,
+            ThemeId = (int)Theme.Light,
+            EmailNotificationEnabled = true,
+            DueDateReminderEnabled = true,
+            OverdueNoticeEnabled = true,
+            ReservationAvailableEnabled = true,
+            FineNotificationEnabled = true,
+            NewBookAlertEnabled = false,
+            AutoRenewEnabled = def.AutoRenewEnabled,
+            DefaultLoanPeriodDays = def.DefaultLoanPeriodDays,
+            MaxReservationsAllowed = def.MaxReservationsAllowed,
+            PreferredGenres = null,
+            PreferredAuthors = null,
+            BooksPerPage = 20,
+            DefaultSortBy = "Title",
+            DefaultViewMode = "Grid",
+            ShowReadingHistory = true,
+            AllowRecommendations = true,
+            AcceptTermsAccepted = true,
+            TenantId = 1,
+            CreatedAt = now,
+            CreatedBy = (int)UserType.SuperAdmin,
+            ModifiedAt = now,
+            ModifiedBy = (int)UserType.SuperAdmin,
+        };
+
+        context.UserProfile.Add(profile);
+        context.UserPreference.Add(preference);
+        await context.SaveChangesAsync();
+
+        logger.LogInformation(
+            "Seed user {Email} ({UserType}) created with card number {CardNumber}.",
+            def.Email, def.UserType, profile.LibraryCardNumber);
     }
 
     private async Task<bool> CheckTableExistsAsync(string tableName)
@@ -71,310 +271,47 @@ public class ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitial
             if (!await context.Database.CanConnectAsync())
                 return false;
 
-            await using var connection = context.Database.GetDbConnection();
-            var dbName = new MySqlConnectionStringBuilder(connection.ConnectionString).Database;
+            var connectionString = context.Database.GetConnectionString();
+
+            await using var connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
 
             await using var command = connection.CreateCommand();
-            command.CommandText = $"SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = @dbName AND table_name = @tableName;";
-            
-            var dbNameParam = command.CreateParameter();
-            dbNameParam.ParameterName = "@dbName";
-            dbNameParam.Value = dbName;
-            command.Parameters.Add(dbNameParam);
+            command.CommandText =
+                "SELECT COUNT(*) FROM information_schema.tables " +
+                "WHERE table_schema = DATABASE() AND table_name = @tableName;";
 
-            var tableNameParam = command.CreateParameter();
-            tableNameParam.ParameterName = "@tableName";
-            tableNameParam.Value = tableName;
-            command.Parameters.Add(tableNameParam);
+            command.Parameters.AddWithValue("@tableName", tableName);
 
-            await context.Database.OpenConnectionAsync();
             var result = await command.ExecuteScalarAsync();
-            
             return Convert.ToInt32(result) > 0;
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error checking if table {TableName} exists", tableName);
+            logger.LogError(ex, "Error checking if table {TableName} exists.", tableName);
             return false;
-        }
-        finally
-        {
-            await context.Database.CloseConnectionAsync();
         }
     }
 
-    //private void SeedRoles()
-    //{
-    //    if (!await CheckTableExistsAsync("Role"))
-    //    {
-    //        Console.WriteLine("Role table does not exist.");
-    //        return;
-    //    }
-
-    //    // Step 2: Ensure roles exist (by ID instead of name)
-    //    //Domain.Entities.Role GetOrCreateRoleById(int roleId, string roleName, string description)
-    //    //{
-    //    //    var role = _context.Role.FirstOrDefault(r => r.Id == roleId);
-    //    //    if (role == null)
-    //    //    {
-    //    //        role = new Domain.Entities.Role { Id = roleId, Name = roleName, Description = description, CreatedBy = 1, LastModifiedBy = 1 };
-    //    //        _context.Role.Add(role);
-    //    //        _context.SaveChanges();
-    //    //    }
-    //    //    return role;
-    //    //}
-
-    //    //var adminRole = GetOrCreateRoleById((int)Domain.Enums.Role.Admin, Domain.Enums.Role.Admin.GetDescription(), "System Administrator");
-    //    //var supportStaffRole = GetOrCreateRoleById((int)Domain.Enums.Role.Support, Domain.Enums.Role.Support.GetDescription(), "Handles support tickets");
-    //    //var userRole = GetOrCreateRoleById((int)Domain.Enums.Role.Employee, Domain.Enums.Role.Employee.GetDescription(), "General Employee");
-
-    //    //_context.SaveChanges();
-
-    //    Console.WriteLine("Roles seeded successfully.");
-    //}
-
-    //private void SeedUser()
-    //{
-    //    var isUserTableExist = await CheckTableExistsAsync("User");
-    //    if (!isUserTableExist)
-    //    {
-    //        Console.WriteLine("User table does not exist yet. Skipping seeding...");
-    //        return;
-    //    }
-
-    //    // Step 3: Method to create user
-    //    void CreateUser(int id, string firstName, string lastName, UserType userType, int roleId)
-    //    {
-    //        if (_context.Users.Any(u => u.Id == id))
-    //            return;
-
-    //        var user = new User
-    //        {
-    //            Id = id, // Hardcoded ID
-    //            FirstName = firstName,
-    //            LastName = lastName,
-    //            Email = $"{firstName.ToLower()}@mailinator.com",
-    //            UserName = $"{firstName.ToLower()}@mailinator.com",
-    //            IsActive = true,
-    //        };
-
-    //        // Temporarily enable identity insert
-    //        //_context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [User] ON");
-
-    //        var result = _userManager.CreateAsync(user, "Asdf@1234").GetAwaiter().GetResult();
-
-    //        //_context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT [User] OFF");
-
-    //        if (!result.Succeeded)
-    //        {
-    //            Console.WriteLine($"Failed to create user {user.Email}: {string.Join(", ", result.Errors.Select(e => e.Description))}");
-    //            return;
-    //        }
-
-    //        var userProfile = new UserProfile
-    //        {
-    //            UserId = user.Id,
-    //            FirstName = user.FirstName,
-    //            LastName = user.LastName,
-    //            Email = user.Email,
-    //            Address = "Default Address",
-    //            MobileNumber = "03001234567",
-    //            DateOfBirth = new DateOnly(1990, 1, 1),
-    //            Gender = GenderType.Male,
-    //            Language = LanguageCode.EN,
-    //            UserTypeId = userType,
-
-    //            Created = DateTimeOffset.UtcNow,
-    //            CreatedBy = 1,
-    //            LastModified = DateTimeOffset.UtcNow,
-    //            LastModifiedBy = 1
-    //        };
-
-    //        _context.UserProfile.Add(userProfile);
-
-    //        var userRoleEntry = new UserRole
-    //        {
-    //            UserId = user.Id,
-    //            RoleId = roleId,
-    //            Created = DateTimeOffset.UtcNow,
-    //            CreatedBy = 1,
-    //            LastModified = DateTimeOffset.UtcNow,
-    //            LastModifiedBy = 1
-    //        };
-
-    //        _context.UserRole.Add(userRoleEntry);
-    //        _context.SaveChanges();
-
-    //        Console.WriteLine($"User with ID {id} created successfully.");
-    //    }
-
-    //    // Step 4: Create the 3 users
-    //    CreateUser(1, "Admin", "TS", UserType.Admin, (int)Domain.Enums.Role.Admin);
-    //}
-
-    //private void SeedPermissions()
-    //{
-    //    if (!await CheckTableExistsAsync("RoleRight"))
-    //    {
-    //        Console.WriteLine("RoleRight table does not exist yet. Skipping seeding...");
-    //        return;
-    //    }
-
-    //    var rightsToAdd = new List<Right>();
-    //    var roleRightMappings = new List<(int RoleId, int RightId)>();
-
-    //    foreach (RightsEnum rightEnum in Enum.GetValues(typeof(RightsEnum)))
-    //    {
-    //        var field = typeof(RightsEnum).GetField(rightEnum.ToString());
-    //        var attr = field?.GetCustomAttributes(typeof(RightAttribute), false)
-    //                        .FirstOrDefault() as RightAttribute;
-
-    //        if (attr == null) continue;
-
-    //        var rightId = (int)rightEnum;
-
-    //        var existingRight = _context.Right.AsTracking().FirstOrDefault(r => r.Id == rightId);
-
-    //        if (existingRight == null)
-    //        {
-    //            rightsToAdd.Add(new Right
-    //            {
-    //                Id = rightId,
-    //                Name = rightEnum.ToReadableString(),
-    //                NameAr = attr.ArabicDescription,
-    //                Description = rightEnum.ToReadableString(),
-    //                RightCategoryId = (int)attr.Category,
-    //                Created = DateTimeOffset.UtcNow,
-    //                CreatedBy = 1,
-    //                LastModified = DateTimeOffset.UtcNow,
-    //                LastModifiedBy = 1,
-    //            });
-    //        }
-    //        else
-    //        {
-    //            // Update existing
-    //            existingRight.Name = rightEnum.ToReadableString();
-    //            existingRight.NameAr = attr.ArabicDescription;
-    //            existingRight.Description = rightEnum.ToReadableString();
-    //            existingRight.RightCategoryId = (int)attr.Category;
-    //            existingRight.LastModified = DateTimeOffset.UtcNow;
-    //            existingRight.LastModifiedBy = 1;
-    //        }
-
-    //        // Role mappings
-    //        foreach (var roleId in attr.RoleIds)
-    //        {
-    //            roleRightMappings.Add((roleId, rightId));
-    //        }
-    //    }
-
-    //    if (rightsToAdd.Any())
-    //    {
-    //        _context.Right.AddRange(rightsToAdd);
-    //    }
-
-    //    _context.SaveChanges();
-    //    Console.WriteLine("Rights seeded/updated.");
-
-    //    foreach (var group in roleRightMappings.GroupBy(r => r.RoleId))
-    //    {
-    //        var roleId = group.Key;
-    //        var rightIds = group.Select(g => g.RightId).Distinct();
-
-    //        var existingRights = _context.RoleRight
-    //            .Where(rr => rr.RoleId == roleId)
-    //            .Select(rr => rr.RightId)
-    //            .ToList();
-
-    //        var newRoleRights = rightIds
-    //            .Except(existingRights)
-    //            .Select(rightId => new RoleRight
-    //            {
-    //                RoleId = roleId,
-    //                RightId = rightId
-    //            })
-    //            .ToList();
-
-    //        if (newRoleRights.Any())
-    //        {
-    //            _context.RoleRight.AddRange(newRoleRights);
-    //            _context.SaveChanges();
-    //            Console.WriteLine($"Rights assigned to Role ID {roleId}.");
-    //        }
-    //    }
-    //}
-
-    //private void SeedEntityTypes()
-    //{
-    //    if (!await CheckTableExistsAsync("EntityType"))
-    //    {
-    //        Console.WriteLine("EntityType table does not exist. Skipping seeding...");
-    //        return;
-    //    }
-
-    //    var enumData = Enum.GetValues(typeof(Domain.Enums.EntityType))
-    //        .Cast<Domain.Enums.EntityType>()
-    //        .Select(e => new
-    //        {
-    //            Id = (int)e,
-    //            NameEn = e.GetDescription(),
-    //            NameAr = e.GetArabicDescription()
-    //        })
-    //        .ToList();
-
-    //    // Fetch only the ones we care about (by Id from enum)
-    //    var existingIds = enumData.Select(x => x.Id).ToList();
-    //    var dbRecords = _context.EntityType
-    //        .AsNoTracking()
-    //        .Where(et => existingIds.Contains(et.Id))
-    //        .ToDictionary(et => et.Id, et => et);
-
-    //    bool hasChanges = false;
-
-    //    foreach (var item in enumData)
-    //    {
-    //        if (dbRecords.TryGetValue(item.Id, out var existing))
-    //        {
-    //            // Exists → update only if names differ
-    //            if (existing.Name != item.NameEn || existing.NameAr != item.NameAr)
-    //            {
-    //                existing.Name = item.NameEn;
-    //                existing.NameAr = item.NameAr;
-    //                existing.LastModified = DateTimeOffset.UtcNow;
-    //                existing.LastModifiedBy = 1;
-
-    //                _context.EntityType.Update(existing);
-    //                hasChanges = true;
-    //                Console.WriteLine($"Updated EntityType Id={item.Id}");
-    //            }
-    //        }
-    //        else
-    //        {
-    //            // Doesn't exist → add new
-    //            _context.EntityType.Add(new Domain.Entities.EntityType
-    //            {
-    //                Id = item.Id,
-    //                Name = item.NameEn,
-    //                NameAr = item.NameAr,
-    //                IsActive = true,
-    //                Created = DateTimeOffset.UtcNow,
-    //                CreatedBy = 1,
-    //                LastModified = DateTimeOffset.UtcNow,
-    //                LastModifiedBy = 1
-    //            });
-    //            hasChanges = true;
-    //            Console.WriteLine($"Added EntityType Id={item.Id}");
-    //        }
-    //    }
-
-    //    if (hasChanges)
-    //    {
-    //        _context.SaveChanges();
-    //        Console.WriteLine("EntityTypes synchronized successfully.");
-    //    }
-    //    else
-    //    {
-    //        Console.WriteLine("EntityTypes already up-to-date.");
-    //    }
-    //}
+    private record SeedUserDefinition(
+        int Id,
+        string FirstName,
+        string LastName,
+        string DisplayName,
+        string Email,
+        string ContactNumber,
+        UserType UserType,
+        bool IsLibraryStaff,
+        bool CanCheckoutBooks,
+        bool CanReserveBooks,
+        bool CanRenewBooks,
+        bool AutoRenewEnabled,
+        int DefaultLoanPeriodDays,
+        int MaxReservationsAllowed,
+        string City,
+        string State,
+        string PostalCode,
+        string Country,
+        string Organization,
+        string EmployeeId);
 }
