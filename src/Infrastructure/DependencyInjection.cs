@@ -188,25 +188,25 @@ public static class DependencyInjection
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection");
         
-        //if (!string.IsNullOrEmpty(connectionString))
-        //{
-        //    // Replace environment variables if present
-        //    connectionString = connectionString
-        //        .Replace("{MYSQL_HOST}", Environment.GetEnvironmentVariable("MYSQL_HOST") ?? "localhost")
-        //        .Replace("{MYSQL_USER}", Environment.GetEnvironmentVariable("MYSQL_USER") ?? "root")
-        //        .Replace("{MYSQL_PASSWORD}", Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "");
-        //}
+        if (!string.IsNullOrEmpty(connectionString))
+        {
+            // Replace environment variables if present
+            connectionString = connectionString
+                .Replace("{MYSQL_HOST}", Environment.GetEnvironmentVariable("MYSQL_HOST") ?? "localhost")
+                .Replace("{MYSQL_USER}", Environment.GetEnvironmentVariable("MYSQL_USER") ?? "root")
+                .Replace("{MYSQL_PASSWORD}", Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "");
+        }
         
-        //// Fallback to environment variables if no connection string found
-        //if (string.IsNullOrEmpty(connectionString))
-        //{
-        //    var host = Environment.GetEnvironmentVariable("MYSQL_HOST") ?? "localhost";
-        //    var user = Environment.GetEnvironmentVariable("MYSQL_USER") ?? "root";
-        //    var password = Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "";
-        //    var database = Environment.GetEnvironmentVariable("MYSQL_DATABASE") ?? "Project_dev";
+        // Fallback to environment variables if no connection string found
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            var host = Environment.GetEnvironmentVariable("MYSQL_HOST") ?? "localhost";
+            var user = Environment.GetEnvironmentVariable("MYSQL_USER") ?? "root";
+            var password = Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "";
+            var database = Environment.GetEnvironmentVariable("MYSQL_DATABASE") ?? "Project_dev";
             
-        //    connectionString = $"server={host};port=3306;user={user};password={password};database={database};Connection Timeout=60";
-        //}
+            connectionString = $"server={host};port=3306;user={user};password={password};database={database};Connection Timeout=60";
+        }
         
         Guard.Against.NullOrEmpty(connectionString, message: "Connection string could not be determined from configuration or environment variables.");
         
