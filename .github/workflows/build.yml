@@ -1,8 +1,5 @@
 name: Build
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   pull_request:
     branches: [ main ]
@@ -53,17 +50,17 @@ jobs:
     - name: Publish website
       if: ${{ inputs.build-artifacts == true }}
       run: |
-        dotnet publish src/Web/Web.csproj --configuration Release --runtime win-x86 --self-contained --output ./publish
+        dotnet publish --configuration Release --runtime win-x86 --self-contained --output ./publish
         cd publish
         zip -r ./publish.zip .
-      working-directory: ./
+      working-directory: ./src/Web/
 
     - name: Upload website artifact (website)
       if: ${{ inputs.build-artifacts == true }}
       uses: actions/upload-artifact@v4
       with:
         name: website
-        path: ./publish/publish.zip
+        path: ./src/Web/publish/publish.zip
         if-no-files-found: error
     
     - name: Create EF Core migrations bundle - Install tool-manifest
