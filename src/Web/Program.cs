@@ -236,17 +236,17 @@ app.UseAuthorization();
 app.UseHealthChecks("/health");
 
 // 9. Swagger/OpenAPI (development only)
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     await app.InitialiseDatabaseAsync();
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
-//else
-//{
-//    // Production HSTS
-//    app.UseHsts();
-//}
+}
+else
+{
+    // Production HSTS
+    app.UseHsts();
+}
 
 // 10. Routing and endpoints
 app.Map("/", () => Results.Redirect("/swagger/index.html"));
