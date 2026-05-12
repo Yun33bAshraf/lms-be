@@ -38,7 +38,8 @@ builder.Services.AddCors(options =>
                 "http://localhost:3000",
                 "http://localhost:5161",
                 "https://tsdev.strahlenstudios.com",
-                "https://ts.techlign.com")
+                "https://ts.techlign.com",
+                "https://lms-be.fly.dev")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
