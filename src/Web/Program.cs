@@ -38,8 +38,7 @@ builder.Services.AddCors(options =>
                 "http://localhost:3000",
                 "http://localhost:5161",
                 "https://tsdev.strahlenstudios.com",
-                "https://ts.techlign.com",
-                "https://lms-web-api-ddadcpgpe5gwc8gq.centralindia-01.azurewebsites.net")
+                "https://ts.techlign.com")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
